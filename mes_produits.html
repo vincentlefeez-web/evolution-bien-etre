@@ -609,7 +609,29 @@ function saveConfig() {
     if (p === 'curcu' || p === 'phyco_intense') { const d = document.getElementById('dose-' + p); if (d) config.doses[p] = parseInt(d.value); }
   });
   localStorage.setItem('ebe_produits_config', JSON.stringify(config));
+  saveConfigToSheet();
   showTab('dashboard');
+}
+
+function saveConfigToSheet() {
+  if (!userData || !userData.email) return;
+  const payload = {
+    action: 'save_config',
+    email: userData.email,
+    produits: config.produits.join(','),
+    date_phyco: config.dates.phyco || '',
+    date_phyco_intense: config.dates.phyco_intense || '',
+    date_vitc: config.dates.vitc || '',
+    date_omega: config.dates.omega || '',
+    date_curcu: config.dates.curcu || '',
+    dose_curcu: config.doses.curcu || 15,
+    dose_phyco_intense: config.doses.phyco_intense || 20
+  };
+  apiCall(payload).then(function(data) {
+    console.log('Config sauvegardée dans le Sheet :', data.status);
+  }).catch(function(e) {
+    console.log('Erreur sauvegarde config :', e);
+  });
 }
 
 function loadConfig() {

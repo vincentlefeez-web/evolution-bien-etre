@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============================================================
 // ÉTAPE 1 : VÉRIFIER EMAIL
 // ============================================================
-async function checkEmail() {
+function checkEmail() {
   const email = document.getElementById('loginEmail').value.trim();
   const msgDiv = document.getElementById('emailMessage');
   if (!email) { msgDiv.innerHTML = '<div class="alert-msg alert-error">⚠️ Veuillez entrer votre email</div>'; return; }
@@ -326,19 +326,15 @@ async function checkEmail() {
   msgDiv.innerHTML = '<div class="alert-msg alert-info">🔄 Vérification en cours...</div>';
   currentEmail = email;
 
-  try {
-    const data = await apiCall({ action: 'check_access', email });
-
+  apiCall({ action: 'check_access', email: email }).then(function(data) {
     if (data.status === 'first_login') {
       userData = data.user || {};
       msgDiv.innerHTML = '';
       showScreen('create-password');
-
     } else if (data.status === 'need_password') {
       msgDiv.innerHTML = '';
       document.getElementById('passwordEmailDisplay').textContent = '📧 ' + email;
       showScreen('password');
-
     } else if (data.status === 'no_access') {
       msgDiv.innerHTML = '<div class="alert-msg alert-warning">⚠️ ' + data.message + '</div>';
     } else if (data.status === 'not_found') {
@@ -346,15 +342,15 @@ async function checkEmail() {
     } else {
       msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ ' + data.message + '</div>';
     }
-  } catch(e) {
+  }).catch(function(e) {
     msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ Erreur de connexion. Réessayez.</div>';
-  }
+  });
 }
 
 // ============================================================
 // ÉTAPE 2A : CRÉER MOT DE PASSE
 // ============================================================
-async function createPassword() {
+function createPassword() {
   const pwd = document.getElementById('newPassword').value;
   const confirm = document.getElementById('confirmPassword').value;
   const msgDiv = document.getElementById('createPasswordMessage');
@@ -363,26 +359,24 @@ async function createPassword() {
 
   msgDiv.innerHTML = '<div class="alert-msg alert-info">🔄 Création en cours...</div>';
 
-  try {
-    const data = await apiCall({ action: 'set_password', email: currentEmail, password: pwd });
-
+  apiCall({ action: 'set_password', email: currentEmail, password: pwd }).then(function(data) {
     if (data.status === 'success') {
       userData = data.user || userData;
       localStorage.setItem('ebe_session', JSON.stringify({ user: userData }));
       msgDiv.innerHTML = '<div class="alert-msg alert-success">✅ Mot de passe créé !</div>';
-      setTimeout(() => initApp(), 800);
+      setTimeout(function() { initApp(); }, 800);
     } else {
       msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ ' + data.message + '</div>';
     }
-  } catch(e) {
+  }).catch(function(e) {
     msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ Erreur. Réessayez.</div>';
-  }
+  });
 }
 
 // ============================================================
 // ÉTAPE 2B : CONNEXION AVEC MOT DE PASSE
 // ============================================================
-async function loginWithPassword() {
+function loginWithPassword() {
   const pwd = document.getElementById('loginPassword').value;
   const msgDiv = document.getElementById('passwordMessage');
 
@@ -390,22 +384,20 @@ async function loginWithPassword() {
 
   msgDiv.innerHTML = '<div class="alert-msg alert-info">🔄 Connexion en cours...</div>';
 
-  try {
-    const data = await apiCall({ action: 'login', email: currentEmail, password: pwd });
-
+  apiCall({ action: 'login', email: currentEmail, password: pwd }).then(function(data) {
     if (data.status === 'success') {
       userData = data.user || {};
       localStorage.setItem('ebe_session', JSON.stringify({ user: userData }));
       msgDiv.innerHTML = '<div class="alert-msg alert-success">✅ Connexion réussie !</div>';
-      setTimeout(() => initApp(), 800);
+      setTimeout(function() { initApp(); }, 800);
     } else if (data.status === 'wrong_password') {
       msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ Mot de passe incorrect.</div>';
     } else {
       msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ ' + data.message + '</div>';
     }
-  } catch(e) {
+  }).catch(function(e) {
     msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ Erreur. Réessayez.</div>';
-  }
+  });
 }
 
 // ============================================================
@@ -700,34 +692,40 @@ function checkPasswordRules(pwd) {
 // ============================================================
 function apiCall(payload) {
   return new Promise(function(resolve, reject) {
-    const callbackName = 'cb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-    const params = new URLSearchParams();
-    params.append('callback', callbackName);
-    for (const key in payload) {
-      if (payload[key] !== undefined && payload[key] !== null) {
-        params.append(key, payload[key]);
+    const callbackName = 'jsonp_' + Date.now();
+    const params = new URLSearchParams({ callback: callbackName });
+    Object.keys(payload).forEach(function(k) {
+      if (payload[k] !== undefined && payload[k] !== null && payload[k] !== '') {
+        params.append(k, String(payload[k]));
       }
-    }
-    const script = document.createElement('script');
-    script.src = API_URL + '?' + params.toString();
-    const timeout = setTimeout(function() {
-      cleanup();
-      reject(new Error('Timeout'));
-    }, 15000);
+    });
+
     window[callbackName] = function(data) {
-      cleanup();
+      clearTimeout(timer);
+      delete window[callbackName];
+      var el = document.getElementById(callbackName);
+      if (el) el.remove();
       resolve(data);
     };
-    function cleanup() {
-      clearTimeout(timeout);
+
+    var timer = setTimeout(function() {
       delete window[callbackName];
-      if (script.parentNode) script.parentNode.removeChild(script);
-    }
+      var el = document.getElementById(callbackName);
+      if (el) el.remove();
+      reject(new Error('Timeout - Vérifiez votre connexion'));
+    }, 20000);
+
+    var script = document.createElement('script');
+    script.id = callbackName;
+    script.type = 'text/javascript';
+    script.src = API_URL + '?' + params.toString();
     script.onerror = function() {
-      cleanup();
+      clearTimeout(timer);
+      delete window[callbackName];
+      this.remove();
       reject(new Error('Erreur réseau'));
     };
-    document.head.appendChild(script);
+    document.body.appendChild(script);
   });
 }
 </script>

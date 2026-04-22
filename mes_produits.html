@@ -37,40 +37,36 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); min-height: 100
 .field label { font-size: 12px; font-weight: 700; color: var(--muted); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.8px; }
 .field input, .field select { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--white); color: var(--text); font-family: 'Barlow', sans-serif; }
 .field input:focus, .field select:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(43,107,168,0.1); }
-.field-hint { font-size: 11px; color: var(--muted); margin-top: 4px; }
-.field-error { font-size: 11px; color: var(--red); margin-top: 4px; display: none; }
-.field.has-error input { border-color: var(--red); }
-.field.has-error .field-error { display: block; }
-.password-wrap { position: relative; }
-.password-wrap input { padding-right: 44px; }
-.password-toggle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); font-size: 16px; padding: 4px; }
-.strength-bar { height: 4px; border-radius: 2px; background: var(--border); margin-top: 8px; overflow: hidden; }
-.strength-fill { height: 100%; border-radius: 2px; transition: all 0.3s; width: 0; }
-.strength-text { font-size: 11px; margin-top: 4px; }
+.password-wrapper { position: relative; }
+.password-wrapper input { padding-right: 44px; }
+.password-toggle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); font-size: 18px; padding: 4px; }
+.password-rules { background: var(--bg); border-radius: 8px; padding: 12px; margin-top: 8px; font-size: 12px; }
+.rule { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; color: var(--muted); }
+.rule.valid { color: var(--green); }
+.rule-icon { font-size: 12px; }
 .btn { width: 100%; padding: 14px; border-radius: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.2s; }
 .btn-primary { background: var(--blue); color: white; }
 .btn-primary:hover { background: var(--blue-dark); }
-.btn-primary:disabled { background: var(--muted); cursor: not-allowed; }
 .btn-secondary { background: var(--bg); color: var(--blue); border: 1px solid var(--blue); margin-top: 10px; }
 .user-info { background: var(--blue-light); border-radius: 10px; padding: 16px; margin-bottom: 20px; border-left: 4px solid var(--blue); }
 .user-name { font-size: 16px; font-weight: 700; color: var(--blue-dark); margin-bottom: 4px; }
 .user-email { font-size: 13px; color: var(--muted); }
-.bilan-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
-.bilan-title { font-size: 14px; font-weight: 700; color: var(--blue-dark); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.bilan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.bilan-item { background: var(--white); border-radius: 8px; padding: 10px; text-align: center; border: 1px solid var(--border); }
-.bilan-item-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-.bilan-item-value { font-size: 15px; font-weight: 700; color: var(--text); }
-.bilan-score { background: var(--blue); color: white; border-radius: 10px; padding: 16px; text-align: center; margin-bottom: 16px; }
-.bilan-score-num { font-size: 36px; font-weight: 800; font-family: 'Barlow Condensed', sans-serif; }
-.bilan-score-label { font-size: 12px; opacity: 0.8; margin-top: 4px; }
-.score-bar-wrap { background: rgba(255,255,255,0.2); border-radius: 4px; height: 8px; margin-top: 10px; overflow: hidden; }
-.score-bar-fill { height: 100%; border-radius: 4px; background: white; transition: width 1s ease; }
-.tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin: 2px; }
-.tag-green { background: #D4EDDA; color: #155724; }
-.tag-orange { background: #FFF3CD; color: #856404; }
-.tag-red { background: #F8D7DA; color: #721C24; }
-.tag-blue { background: var(--blue-light); color: var(--blue-dark); }
+.bilan-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.bilan-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 800; color: var(--text); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.bilan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.bilan-item { background: var(--bg); border-radius: 8px; padding: 10px; }
+.bilan-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+.bilan-value { font-size: 14px; font-weight: 600; color: var(--text); }
+.score-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--blue-light); border: 2px solid var(--blue); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; }
+.score-num { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: var(--blue); }
+.score-label { font-size: 12px; color: var(--muted); }
+.score-text { font-weight: 700; color: var(--text); }
+.jauge-item { margin-bottom: 10px; }
+.jauge-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+.jauge-label { color: var(--text); font-weight: 600; }
+.jauge-val { color: var(--muted); }
+.jauge-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.jauge-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
 .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
 .product-card { border: 2px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--white); }
 .product-card:hover { border-color: var(--blue); }
@@ -105,47 +101,39 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); min-height: 100
 .nav-item { flex: 1; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; border-top: 3px solid transparent; transition: all 0.15s; }
 .nav-item.active { color: var(--blue); border-top-color: var(--blue); }
 .nav-item svg { width: 20px; height: 20px; }
-.logout-btn { font-size: 12px; color: var(--muted); text-align: right; cursor: pointer; margin-bottom: 12px; text-decoration: underline; }
-.alert-box { padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-top: 12px; line-height: 1.5; }
-.alert-success { background: #D4EDDA; color: #155724; }
+.logout-btn { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; }
+.alert-msg { padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-top: 12px; }
 .alert-error { background: #F8D7DA; color: #721C24; }
+.alert-success { background: #D4EDDA; color: #155724; }
 .alert-warning { background: #FFF3CD; color: #856404; }
 .alert-info { background: var(--blue-light); color: var(--blue-dark); }
-.divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; color: var(--muted); font-size: 12px; }
-.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 </style>
 </head>
 <body>
 <div class="app">
   <div class="header">
-    <div class="header-top">
-      <img src="logo2.jpg" class="logo" alt="Logo Évolution Bien-Être">
+    <div class="header-top" style="position:relative;">
+      <img src="logo2.jpg" class="logo" alt="Logo">
       <div class="brand">
         <div class="brand-name">Évolution Bien-Être</div>
-        <div class="brand-sub" id="headerSub">Mes produits</div>
+        <div class="brand-sub">Mes produits</div>
       </div>
+      <button class="logout-btn" id="logoutBtn" onclick="logout()" style="display:none;">Déconnexion</button>
     </div>
   </div>
 
-  <!-- ÉCRAN LOGIN -->
-  <div class="screen active" id="screen-login">
+  <!-- ÉTAPE 1 : EMAIL -->
+  <div class="screen active" id="screen-email">
     <div class="welcome">
       <div class="welcome-icon">🔐</div>
       <div class="welcome-title">Accès sécurisé</div>
-      <div class="welcome-desc">Connectez-vous pour accéder à votre espace personnel</div>
+      <div class="welcome-desc">Entrez votre email pour accéder à vos produits</div>
       <div class="field" style="text-align:left;margin-top:24px;">
         <label>Votre email</label>
-        <input type="email" id="loginEmail" placeholder="votre@email.com">
+        <input type="email" id="loginEmail" placeholder="votre@email.com" style="text-align:center;" onkeypress="if(event.key==='Enter') checkEmail()">
       </div>
-      <div class="field" id="fieldPassword" style="text-align:left;display:none;">
-        <label>Mot de passe</label>
-        <div class="password-wrap">
-          <input type="password" id="loginPassword" placeholder="Votre mot de passe">
-          <button class="password-toggle" onclick="togglePassword('loginPassword', this)">👁️</button>
-        </div>
-      </div>
-      <button class="btn btn-primary" style="margin-top:8px;" onclick="handleLogin()">Continuer</button>
-      <div id="loginMessage" style="margin-top:16px;"></div>
+      <button class="btn btn-primary" style="margin-top:16px;" onclick="checkEmail()">Continuer →</button>
+      <div id="emailMessage" style="margin-top:12px;"></div>
       <div style="margin-top:24px;padding:16px;background:var(--blue-light);border-radius:8px;font-size:12px;color:var(--muted);line-height:1.6;">
         💡 Pas encore accès ?<br>
         Remplissez d'abord le <a href="https://docs.google.com/forms/d/e/1FAIpQLSdyjy14QUdmSYsdGL_DgwSxYklmqZh4py7m70UzD_stPfWNjA/viewform" target="_blank" style="color:var(--blue);font-weight:700;">bilan bien-être</a>
@@ -153,44 +141,57 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); min-height: 100
     </div>
   </div>
 
-  <!-- ÉCRAN CRÉATION MOT DE PASSE -->
+  <!-- ÉTAPE 2A : CRÉER MOT DE PASSE (1ère connexion) -->
   <div class="screen" id="screen-create-password">
     <div class="welcome">
       <div class="welcome-icon">🔑</div>
-      <div class="welcome-title">Créer votre<br>mot de passe</div>
-      <div class="welcome-desc">Bienvenue <strong id="firstLoginName"></strong> ! Choisissez un mot de passe sécurisé pour protéger votre compte.</div>
-    </div>
-
-    <div class="field" id="fieldNewPassword">
-      <label>Nouveau mot de passe</label>
-      <div class="password-wrap">
-        <input type="password" id="newPassword" placeholder="Créez votre mot de passe" oninput="checkPasswordStrength(this.value)">
-        <button class="password-toggle" onclick="togglePassword('newPassword', this)">👁️</button>
+      <div class="welcome-title">Première connexion</div>
+      <div class="welcome-desc">Créez votre mot de passe personnel pour sécuriser votre accès.</div>
+      <div class="field" style="text-align:left;margin-top:24px;">
+        <label>Nouveau mot de passe</label>
+        <div class="password-wrapper">
+          <input type="password" id="newPassword" placeholder="Votre mot de passe" oninput="checkPasswordRules(this.value)" onkeypress="if(event.key==='Enter') createPassword()">
+          <button class="password-toggle" onclick="togglePassword('newPassword')">👁</button>
+        </div>
+        <div class="password-rules">
+          <div class="rule" id="rule-length"><span class="rule-icon">○</span> 8 caractères minimum</div>
+          <div class="rule" id="rule-upper"><span class="rule-icon">○</span> 1 majuscule</div>
+          <div class="rule" id="rule-number"><span class="rule-icon">○</span> 1 chiffre</div>
+        </div>
       </div>
-      <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
-      <div class="strength-text" id="strengthText"></div>
-      <div class="field-hint">
-        ✅ 8 caractères minimum &nbsp; ✅ 1 majuscule &nbsp; ✅ 1 chiffre
+      <div class="field" style="text-align:left;">
+        <label>Confirmer le mot de passe</label>
+        <div class="password-wrapper">
+          <input type="password" id="confirmPassword" placeholder="Confirmez votre mot de passe" onkeypress="if(event.key==='Enter') createPassword()">
+          <button class="password-toggle" onclick="togglePassword('confirmPassword')">👁</button>
+        </div>
       </div>
-      <div class="field-error" id="newPasswordError">Le mot de passe ne respecte pas les critères</div>
+      <button class="btn btn-primary" style="margin-top:8px;" onclick="createPassword()">Créer mon mot de passe</button>
+      <div id="createPasswordMessage" style="margin-top:12px;"></div>
     </div>
-
-    <div class="field" id="fieldConfirmPassword">
-      <label>Confirmer le mot de passe</label>
-      <div class="password-wrap">
-        <input type="password" id="confirmPassword" placeholder="Répétez votre mot de passe">
-        <button class="password-toggle" onclick="togglePassword('confirmPassword', this)">👁️</button>
-      </div>
-      <div class="field-error" id="confirmPasswordError">Les mots de passe ne correspondent pas</div>
-    </div>
-
-    <button class="btn btn-primary" onclick="createPassword()" id="btnCreatePassword">Créer mon mot de passe</button>
-    <div id="createPasswordMessage" style="margin-top:16px;"></div>
   </div>
 
-  <!-- ÉCRAN DASHBOARD -->
+  <!-- ÉTAPE 2B : ENTRER MOT DE PASSE (connexions suivantes) -->
+  <div class="screen" id="screen-password">
+    <div class="welcome">
+      <div class="welcome-icon">🔓</div>
+      <div class="welcome-title">Connexion</div>
+      <div class="welcome-desc" id="passwordEmailDisplay"></div>
+      <div class="field" style="text-align:left;margin-top:24px;">
+        <label>Mot de passe</label>
+        <div class="password-wrapper">
+          <input type="password" id="loginPassword" placeholder="Votre mot de passe" onkeypress="if(event.key==='Enter') loginWithPassword()">
+          <button class="password-toggle" onclick="togglePassword('loginPassword')">👁</button>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="margin-top:8px;" onclick="loginWithPassword()">Se connecter</button>
+      <button class="btn btn-secondary" onclick="backToEmail()">← Changer d'email</button>
+      <div id="passwordMessage" style="margin-top:12px;"></div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
   <div class="screen" id="screen-dashboard">
-    <div class="logout-btn" onclick="logout()">🚪 Déconnexion</div>
     <div class="user-info">
       <div class="user-name" id="userName"></div>
       <div class="user-email" id="userEmail"></div>
@@ -201,13 +202,12 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); min-height: 100
     <div id="prochainsRappels"></div>
   </div>
 
-  <!-- ÉCRAN BILAN -->
+  <!-- MON BILAN -->
   <div class="screen" id="screen-bilan">
-    <div class="section-title">📊 Mon bilan bien-être</div>
     <div id="bilanContent"></div>
   </div>
 
-  <!-- ÉCRAN CONFIG -->
+  <!-- CONFIG -->
   <div class="screen" id="screen-config">
     <div class="section-title">Sélectionnez vos produits</div>
     <div class="product-grid">
@@ -255,7 +255,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); min-height: 100
     <button class="btn btn-primary" style="margin-top:24px" onclick="saveConfig()">Enregistrer ma configuration</button>
   </div>
 
-  <!-- ÉCRAN MODE D'EMPLOI -->
+  <!-- MODE D'EMPLOI -->
   <div class="screen" id="screen-mode">
     <div class="section-title">Mode d'emploi</div>
     <div id="modeEmploi"></div>
@@ -265,11 +265,11 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); min-height: 100
   <div class="footer-nav" id="footerNav" style="display:none;">
     <div class="nav-item active" id="nav-dashboard" onclick="showTab('dashboard')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      Tableau de bord
+      Dashboard
     </div>
     <div class="nav-item" id="nav-bilan" onclick="showTab('bilan')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-      Mon bilan
+      Mon Bilan
     </div>
     <div class="nav-item" id="nav-mode" onclick="showTab('mode')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
@@ -277,7 +277,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); min-height: 100
     </div>
     <div class="nav-item" id="nav-config" onclick="showTab('config')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/></svg>
-      Configuration
+      Config
     </div>
   </div>
 </div>
@@ -286,38 +286,136 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); min-height: 100
 const API_URL = 'https://script.google.com/macros/s/AKfycbzvm5khAAEM3iuZVGkSyZjDE5PXczm83id13pjf21s42rT5YPv2Kfex6skiDbZk--BTuA/exec';
 
 const PRODUITS = {
-  phyco: { nom: 'Phycocyanine', vol: 250, unite: 'ml', dose_jour: 10, image: 'Phycicyanine.webp', horaire: 'Matin à jeun (15 min avant café/thé)', dosage: '5 ml les 3 premiers jours, puis 10 ml. 15 ml si besoins particuliers (2ème semaine)', prise: "Pure (effet immédiat) ou diluée dans un verre d'eau (effet prolongé)", conservation: "À consommer dans les 6 mois après ouverture. À l'abri de la lumière.", tips: 'Avant/pendant/après le sport pour booster la performance et réduire les courbatures' },
-  phyco_intense: { nom: 'Phycocyanine Intense', vol: 200, unite: 'ml', dose_jour: null, image: 'Phycicyanine_intense.webp', horaire: 'Pour sportifs : personnalisable selon profil', dosage: 'Adapter selon votre profil : 15-25 ml/jour', prise: "Pure ou diluée dans un verre d'eau. Répartir sur la journée.", conservation: "À consommer dans les 6 mois après ouverture.", tips: "Réservée aux sportifs en préparation ou compétition." },
-  vitc: { nom: 'Vitamine C Liposomale', vol: 150, unite: 'ml', dose_jour: 5, image: 'vitamine_c.webp', horaire: 'Matin à jeun', dosage: '5 ml', prise: "Agiter avant utilisation. Diluée dans un verre d'eau.", conservation: "À consommer dans les 30 jours après ouverture. Réfrigérateur.", warning: "Contre-indication : hémochromatose. Consulter médecin si insuffisance rénale." },
-  omega: { nom: 'Oméga3-VitD3-Astax', vol: 60, unite: 'caps', dose_jour: 2, image: 'omega3.webp', horaire: 'Pendant le dîner', dosage: '2 capsules', prise: "Au cours du repas du soir avec un verre d'eau.", conservation: "À l'abri de la lumière, température ambiante ou réfrigérée.", warning: "Déconseillé aux allergiques aux crustacés/mollusques/poissons. Anticoagulants : consulter médecin." },
-  curcu: { nom: 'Curcu8-Q10', vol: 500, unite: 'ml', dose_jour: 15, image: 'c8q10.webp', horaire: 'Après un repas', dosage: "Prévention : 15 ml. Douleurs : 30 ml jusqu'à diminution puis 15 ml.", prise: "Bien agiter. Après repas dans un grand verre d'eau.", conservation: "À l'abri de la lumière, température ambiante. NE PAS RÉFRIGÉRER.", warning: "Si sensibilité aux épices, commencer par 1/2 cc couplée à la phycocyanine." }
+  phyco: { nom: 'Phycocyanine', vol: 250, unite: 'ml', dose_jour: 10, image: 'Phycicyanine.webp', horaire: 'Matin à jeun (15 min avant café/thé)', dosage: '5 ml les 3 premiers jours, puis 10 ml.', prise: "Pure ou diluée dans un verre d'eau.", conservation: "6 mois après ouverture. À l'abri de la lumière.", tips: 'Avant/pendant/après le sport.' },
+  phyco_intense: { nom: 'Phycocyanine Intense', vol: 200, unite: 'ml', dose_jour: null, image: 'Phycicyanine_intense.webp', horaire: 'Pour sportifs : personnalisable', dosage: '15-25 ml/jour selon profil.', prise: "Pure ou diluée. Répartir sur la journée.", conservation: "6 mois après ouverture. À l'abri de la lumière.", tips: "Réservée aux sportifs en préparation ou compétition." },
+  vitc: { nom: 'Vitamine C Liposomale', vol: 150, unite: 'ml', dose_jour: 5, image: 'vitamine_c.webp', horaire: 'Matin à jeun', dosage: '5 ml', prise: "Agiter avant utilisation. Diluée dans un verre d'eau.", conservation: "30 jours après ouverture. Au réfrigérateur.", warning: "Contre-indication : hémochromatose." },
+  omega: { nom: 'Oméga3-VitD3-Astax', vol: 60, unite: 'caps', dose_jour: 2, image: 'omega3.webp', horaire: 'Pendant le dîner', dosage: '2 capsules', prise: "Au cours du repas du soir.", conservation: "À l'abri de la lumière.", warning: "Déconseillé aux allergiques aux crustacés." },
+  curcu: { nom: 'Curcu8-Q10', vol: 500, unite: 'ml', dose_jour: 15, image: 'c8q10.webp', horaire: 'Après un repas', dosage: "15 ml (prévention) ou 30 ml (douleurs).", prise: "Bien agiter. Après repas dans un grand verre d'eau.", conservation: "À l'abri de la lumière. NE PAS RÉFRIGÉRER.", warning: "Si sensibilité aux épices, commencer par 1/2 cc." }
 };
 
 let userData = {};
+let currentEmail = '';
 let config = { produits: [], horaires: {}, dates: {}, doses: {} };
-let loginStep = 'email';
 
+// ============================================================
+// INIT
+// ============================================================
 document.addEventListener('DOMContentLoaded', function() {
-  checkExistingSession();
+  const stored = localStorage.getItem('ebe_session');
+  if (stored) {
+    try {
+      const session = JSON.parse(stored);
+      userData = session.user;
+      initApp();
+    } catch(e) {
+      showScreen('email');
+    }
+  } else {
+    showScreen('email');
+  }
 });
 
 // ============================================================
-// SESSION
+// ÉTAPE 1 : VÉRIFIER EMAIL
 // ============================================================
-function checkExistingSession() {
+async function checkEmail() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const msgDiv = document.getElementById('emailMessage');
+  if (!email) { msgDiv.innerHTML = '<div class="alert-msg alert-error">⚠️ Veuillez entrer votre email</div>'; return; }
+
+  msgDiv.innerHTML = '<div class="alert-msg alert-info">🔄 Vérification en cours...</div>';
+  currentEmail = email;
+
   try {
-    const stored = localStorage.getItem('ebe_user');
-    if (stored) {
-      userData = JSON.parse(stored);
-      showLoggedIn();
+    const data = await apiCall({ action: 'check_access', email });
+
+    if (data.status === 'first_login') {
+      userData = data.user || {};
+      msgDiv.innerHTML = '';
+      showScreen('create-password');
+
+    } else if (data.status === 'need_password') {
+      msgDiv.innerHTML = '';
+      document.getElementById('passwordEmailDisplay').textContent = '📧 ' + email;
+      showScreen('password');
+
+    } else if (data.status === 'no_access') {
+      msgDiv.innerHTML = '<div class="alert-msg alert-warning">⚠️ ' + data.message + '</div>';
+    } else if (data.status === 'not_found') {
+      msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ ' + data.message + '</div>';
+    } else {
+      msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ ' + data.message + '</div>';
     }
   } catch(e) {
-    showScreen('login');
+    msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ Erreur de connexion. Réessayez.</div>';
   }
 }
 
-function showLoggedIn() {
+// ============================================================
+// ÉTAPE 2A : CRÉER MOT DE PASSE
+// ============================================================
+async function createPassword() {
+  const pwd = document.getElementById('newPassword').value;
+  const confirm = document.getElementById('confirmPassword').value;
+  const msgDiv = document.getElementById('createPasswordMessage');
+
+  if (pwd !== confirm) { msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ Les mots de passe ne correspondent pas.</div>'; return; }
+
+  msgDiv.innerHTML = '<div class="alert-msg alert-info">🔄 Création en cours...</div>';
+
+  try {
+    const data = await apiCall({ action: 'set_password', email: currentEmail, password: pwd });
+
+    if (data.status === 'success') {
+      userData = data.user || userData;
+      localStorage.setItem('ebe_session', JSON.stringify({ user: userData }));
+      msgDiv.innerHTML = '<div class="alert-msg alert-success">✅ Mot de passe créé !</div>';
+      setTimeout(() => initApp(), 800);
+    } else {
+      msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ ' + data.message + '</div>';
+    }
+  } catch(e) {
+    msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ Erreur. Réessayez.</div>';
+  }
+}
+
+// ============================================================
+// ÉTAPE 2B : CONNEXION AVEC MOT DE PASSE
+// ============================================================
+async function loginWithPassword() {
+  const pwd = document.getElementById('loginPassword').value;
+  const msgDiv = document.getElementById('passwordMessage');
+
+  if (!pwd) { msgDiv.innerHTML = '<div class="alert-msg alert-error">⚠️ Entrez votre mot de passe</div>'; return; }
+
+  msgDiv.innerHTML = '<div class="alert-msg alert-info">🔄 Connexion en cours...</div>';
+
+  try {
+    const data = await apiCall({ action: 'login', email: currentEmail, password: pwd });
+
+    if (data.status === 'success') {
+      userData = data.user || {};
+      localStorage.setItem('ebe_session', JSON.stringify({ user: userData }));
+      msgDiv.innerHTML = '<div class="alert-msg alert-success">✅ Connexion réussie !</div>';
+      setTimeout(() => initApp(), 800);
+    } else if (data.status === 'wrong_password') {
+      msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ Mot de passe incorrect.</div>';
+    } else {
+      msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ ' + data.message + '</div>';
+    }
+  } catch(e) {
+    msgDiv.innerHTML = '<div class="alert-msg alert-error">❌ Erreur. Réessayez.</div>';
+  }
+}
+
+// ============================================================
+// INIT APP APRÈS CONNEXION
+// ============================================================
+function initApp() {
+  document.getElementById('logoutBtn').style.display = 'block';
   document.getElementById('footerNav').style.display = 'flex';
+  document.getElementById('userName').textContent = (userData.prenom || '') + ' ' + (userData.nom || '');
+  document.getElementById('userEmail').textContent = userData.email || currentEmail;
   loadConfig();
   if (config.produits.length > 0) {
     showTab('dashboard');
@@ -326,374 +424,115 @@ function showLoggedIn() {
   }
 }
 
-function logout() {
-  localStorage.removeItem('ebe_user');
-  localStorage.removeItem('ebe_produits_config');
-  userData = {};
-  config = { produits: [], horaires: {}, dates: {}, doses: {} };
-  loginStep = 'email';
-  document.getElementById('footerNav').style.display = 'none';
-  document.getElementById('fieldPassword').style.display = 'none';
-  document.getElementById('loginEmail').value = '';
-  document.getElementById('loginPassword').value = '';
-  document.getElementById('loginMessage').innerHTML = '';
-  showScreen('login');
-}
-
 // ============================================================
-// LOGIN FLOW
+// BILAN COMPLET
 // ============================================================
-async function handleLogin() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value;
-  const messageDiv = document.getElementById('loginMessage');
-
-  if (!email) {
-    messageDiv.innerHTML = '<div class="alert-box alert-error">⚠️ Veuillez entrer votre email</div>';
-    return;
-  }
-
-  messageDiv.innerHTML = '<div class="alert-box alert-info">🔄 Vérification en cours...</div>';
-
-  try {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'check_access', email, password: password || '' })
-    });
-
-    const data = await response.json();
-
-    if (data.status === 'success') {
-      userData = data.user;
-      localStorage.setItem('ebe_user', JSON.stringify(userData));
-      messageDiv.innerHTML = '<div class="alert-box alert-success">✅ Connexion réussie !</div>';
-      setTimeout(() => { showLoggedIn(); }, 800);
-
-    } else if (data.status === 'first_login') {
-      userData = data.user;
-      document.getElementById('firstLoginName').textContent = data.user.prenom || '';
-      messageDiv.innerHTML = '';
-      showScreen('create-password');
-
-    } else if (data.status === 'need_password') {
-      document.getElementById('fieldPassword').style.display = 'block';
-      document.getElementById('loginPassword').focus();
-      messageDiv.innerHTML = '<div class="alert-box alert-info">🔑 Entrez votre mot de passe</div>';
-
-    } else if (data.status === 'wrong_password') {
-      document.getElementById('fieldPassword').style.display = 'block';
-      messageDiv.innerHTML = '<div class="alert-box alert-error">❌ Mot de passe incorrect. Réessayez.</div>';
-
-    } else if (data.status === 'no_access') {
-      messageDiv.innerHTML = '<div class="alert-box alert-warning">⚠️ ' + data.message + '</div>';
-
-    } else if (data.status === 'not_found') {
-      messageDiv.innerHTML = '<div class="alert-box alert-error">❌ ' + data.message + '</div>';
-
-    } else {
-      messageDiv.innerHTML = '<div class="alert-box alert-error">❌ ' + data.message + '</div>';
-    }
-  } catch(error) {
-    console.error(error);
-    messageDiv.innerHTML = '<div class="alert-box alert-error">❌ Erreur de connexion. Vérifiez votre connexion internet.</div>';
-  }
-}
-
-// ============================================================
-// CRÉATION MOT DE PASSE
-// ============================================================
-function checkPasswordStrength(password) {
-  const fill = document.getElementById('strengthFill');
-  const text = document.getElementById('strengthText');
-  let score = 0;
-  if (password.length >= 8) score++;
-  if (/[A-Z]/.test(password)) score++;
-  if (/[0-9]/.test(password)) score++;
-  if (/[^A-Za-z0-9]/.test(password)) score++;
-
-  const levels = [
-    { color: '#DC3545', width: '25%', label: '🔴 Très faible' },
-    { color: '#FF8C00', width: '50%', label: '🟠 Faible' },
-    { color: '#FFC107', width: '75%', label: '🟡 Moyen' },
-    { color: '#28A745', width: '100%', label: '🟢 Fort' }
-  ];
-
-  if (password.length === 0) {
-    fill.style.width = '0';
-    text.textContent = '';
-    return;
-  }
-
-  const level = levels[Math.min(score - 1, 3)] || levels[0];
-  fill.style.width = level.width;
-  fill.style.background = level.color;
-  text.textContent = level.label;
-  text.style.color = level.color;
-}
-
-function validatePassword(password) {
-  return password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password);
-}
-
-async function createPassword() {
-  const password = document.getElementById('newPassword').value;
-  const confirm = document.getElementById('confirmPassword').value;
-  const messageDiv = document.getElementById('createPasswordMessage');
-
-  // Validation
-  const fieldNew = document.getElementById('fieldNewPassword');
-  const fieldConfirm = document.getElementById('fieldConfirmPassword');
-  fieldNew.classList.remove('has-error');
-  fieldConfirm.classList.remove('has-error');
-
-  if (!validatePassword(password)) {
-    fieldNew.classList.add('has-error');
-    return;
-  }
-  if (password !== confirm) {
-    fieldConfirm.classList.add('has-error');
-    return;
-  }
-
-  messageDiv.innerHTML = '<div class="alert-box alert-info">🔄 Création en cours...</div>';
-  document.getElementById('btnCreatePassword').disabled = true;
-
-  try {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'set_password', email: userData.email, password })
-    });
-
-    const data = await response.json();
-
-    if (data.status === 'success') {
-      messageDiv.innerHTML = '<div class="alert-box alert-success">✅ Mot de passe créé ! Connexion en cours...</div>';
-      localStorage.setItem('ebe_user', JSON.stringify(userData));
-      setTimeout(() => { showLoggedIn(); }, 1000);
-    } else {
-      messageDiv.innerHTML = '<div class="alert-box alert-error">❌ ' + data.message + '</div>';
-      document.getElementById('btnCreatePassword').disabled = false;
-    }
-  } catch(error) {
-    messageDiv.innerHTML = '<div class="alert-box alert-error">❌ Erreur de connexion.</div>';
-    document.getElementById('btnCreatePassword').disabled = false;
-  }
-}
-
-// ============================================================
-// UI HELPERS
-// ============================================================
-function togglePassword(inputId, btn) {
-  const input = document.getElementById(inputId);
-  if (input.type === 'password') {
-    input.type = 'text';
-    btn.textContent = '🙈';
-  } else {
-    input.type = 'password';
-    btn.textContent = '👁️';
-  }
-}
-
-function showScreen(name) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-' + name).classList.add('active');
-}
-
-function showTab(tab) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-
-  document.getElementById('screen-' + tab).classList.add('active');
-  const navEl = document.getElementById('nav-' + tab);
-  if (navEl) navEl.classList.add('active');
-
-  if (tab === 'dashboard') buildDashboard();
-  if (tab === 'bilan') buildBilan();
-  if (tab === 'mode') buildModeEmploi();
-}
-
-// ============================================================
-// BILAN
-// ============================================================
-function getScoreColor(score) {
-  const s = parseInt(score);
-  if (isNaN(s)) return '#6B89A8';
-  if (s >= 80) return '#28A745';
-  if (s >= 50) return '#FF8C00';
-  return '#DC3545';
-}
-
-function getScoreLabel(score) {
-  const s = parseInt(score);
-  if (isNaN(s)) return '';
-  if (s >= 80) return 'Excellent niveau de bien-être 🌟';
-  if (s >= 60) return 'Bon niveau de bien-être 👍';
-  if (s >= 40) return 'Niveau moyen — des améliorations possibles';
-  return 'Niveau faible — suivi recommandé';
-}
-
-function getNoteTag(val) {
-  const v = parseInt(val);
-  if (isNaN(v)) return '<span class="tag tag-blue">' + (val || 'N/A') + '</span>';
-  if (v >= 4) return '<span class="tag tag-green">⭐ ' + v + '/5</span>';
-  if (v >= 3) return '<span class="tag tag-orange">⚡ ' + v + '/5</span>';
-  return '<span class="tag tag-red">⚠️ ' + v + '/5</span>';
-}
-
-function getBoolTag(val) {
-  if (!val) return '<span class="tag tag-blue">N/A</span>';
-  const v = val.toLowerCase();
-  if (v === 'oui' || v === 'yes') return '<span class="tag tag-orange">⚠️ Oui</span>';
-  return '<span class="tag tag-green">✅ Non</span>';
-}
-
 function buildBilan() {
   const container = document.getElementById('bilanContent');
   const u = userData;
-  if (!u || !u.email) {
-    container.innerHTML = '<p style="text-align:center;color:var(--muted);padding:32px 0;">Aucune donnée disponible</p>';
-    return;
-  }
 
-  const b = u.bilan || {};
   const scoreVal = parseInt(u.score) || 0;
-  const scoreMax = 100;
-  const scorePct = Math.min((scoreVal / scoreMax) * 100, 100);
+  const scoreMax = 110;
+  const scorePct = Math.min(100, Math.round((scoreVal / scoreMax) * 100));
+  let scoreColor = scoreVal >= 80 ? '#28A745' : scoreVal >= 50 ? '#FF8C00' : '#DC3545';
+  let scoreCommentaire = scoreVal >= 80 ? 'Excellent état général' : scoreVal >= 50 ? 'État correct, améliorations possibles' : 'Attention, plusieurs points à améliorer';
 
-  let html = '';
-
-  // Score
-  if (u.score) {
-    html += `<div class="bilan-score" style="background:${getScoreColor(u.score)}">
-      <div class="bilan-score-num">${u.score}</div>
-      <div class="bilan-score-label">${getScoreLabel(u.score)}</div>
-      <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${scorePct}%"></div></div>
-    </div>`;
-  }
-
-  // Infos personnelles
-  html += `<div class="bilan-card">
-    <div class="bilan-title">👤 Informations personnelles</div>
-    <div class="bilan-grid">
-      <div class="bilan-item"><div class="bilan-item-label">Nom</div><div class="bilan-item-value">${u.nom || '—'}</div></div>
-      <div class="bilan-item"><div class="bilan-item-label">Prénom</div><div class="bilan-item-value">${u.prenom || '—'}</div></div>
-      <div class="bilan-item"><div class="bilan-item-label">Âge</div><div class="bilan-item-value">${u.age || '—'}</div></div>
-      <div class="bilan-item"><div class="bilan-item-label">Poids</div><div class="bilan-item-value">${u.poids ? u.poids + ' kg' : '—'}</div></div>
-      <div class="bilan-item"><div class="bilan-item-label">Taille</div><div class="bilan-item-value">${u.taille ? u.taille + ' cm' : '—'}</div></div>
-      <div class="bilan-item"><div class="bilan-item-label">Sportif</div><div class="bilan-item-value">${u.sportif || '—'}</div></div>
-    </div>
-  </div>`;
-
-  // Résultats bilan
-  const bilanItems = [
-    { key: 'sommeil', label: 'Sommeil', icon: '😴' },
-    { key: 'energie', label: 'Énergie', icon: '⚡' },
-    { key: 'recuperation', label: 'Récupération', icon: '🔄' },
-    { key: 'endurance', label: 'Endurance', icon: '🏃' },
-    { key: 'gestion_emotionnelle', label: 'Gestion émotionnelle', icon: '🧘' },
-    { key: 'moral', label: 'Moral', icon: '😊' },
-    { key: 'confort_respiratoire', label: 'Confort respiratoire', icon: '🫁' },
-    { key: 'confort_articulaire', label: 'Confort articulaire', icon: '🦴' },
-    { key: 'confort_musculaire', label: 'Confort musculaire', icon: '💪' },
-    { key: 'concentration', label: 'Concentration', icon: '🧠' },
-    { key: 'cheveux_ongles', label: 'Cheveux & Ongles', icon: '💅' },
-    { key: 'qualite_peau', label: 'Qualité peau', icon: '✨' },
-    { key: 'qualite_digestion', label: 'Digestion', icon: '🫀' },
-    { key: 'satiete', label: 'Satiété', icon: '🍽️' }
+  const jauges = [
+    { label: 'Qualité du sommeil', val: u.sommeil },
+    { label: 'Énergie', val: u.energie },
+    { label: 'Récupération', val: u.recuperation },
+    { label: 'Endurance', val: u.endurance },
+    { label: 'Gestion émotionnelle', val: u.gestion_emotionnelle },
+    { label: 'Moral', val: u.moral },
+    { label: 'Confort respiratoire', val: u.confort_respiratoire },
+    { label: 'Confort articulaire', val: u.confort_articulaire },
+    { label: 'Confort musculaire', val: u.confort_musculaire },
+    { label: 'Concentration', val: u.concentration },
+    { label: 'Cheveux & Ongles', val: u.cheveux_ongles },
+    { label: 'Qualité de la peau', val: u.qualite_peau },
+    { label: 'Digestion', val: u.qualite_digestion },
+    { label: 'Satiété', val: u.satiete }
   ];
 
-  html += `<div class="bilan-card"><div class="bilan-title">📊 Résultats du bilan</div>`;
-  bilanItems.forEach(item => {
-    const val = b[item.key];
-    if (val) {
-      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
-        <span style="font-size:13px;color:var(--text);">${item.icon} ${item.label}</span>
-        ${getNoteTag(val)}
-      </div>`;
-    }
-  });
-  html += `</div>`;
+  function jaugeColor(v) {
+    const n = parseInt(v) || 0;
+    if (n >= 8) return '#28A745';
+    if (n >= 5) return '#FF8C00';
+    return '#DC3545';
+  }
 
-  // Santé
-  html += `<div class="bilan-card"><div class="bilan-title">🏥 Informations santé</div>
-    <div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-size:13px;color:var(--text);">Allergies</span>${getBoolTag(b.allergies)}
+  let jaugesHtml = jauges.map(j => {
+    const n = parseInt(j.val) || 0;
+    const pct = Math.min(100, n * 10);
+    return `<div class="jauge-item">
+      <div class="jauge-header">
+        <span class="jauge-label">${j.label}</span>
+        <span class="jauge-val">${n}/10</span>
+      </div>
+      <div class="jauge-bar">
+        <div class="jauge-fill" style="width:${pct}%;background:${jaugeColor(n)};"></div>
+      </div>
     </div>`;
-  if (b.allergies_details) {
-    html += `<div style="padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:12px;color:var(--muted);">Détails : </span><span style="font-size:13px;color:var(--text);">${b.allergies_details}</span></div>`;
-  }
-  html += `<div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-size:13px;color:var(--text);">Pathologie</span>${getBoolTag(b.pathologie)}
-    </div>`;
-  if (b.pathologie_details) {
-    html += `<div style="padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:12px;color:var(--muted);">Détails : </span><span style="font-size:13px;color:var(--text);">${b.pathologie_details}</span></div>`;
-  }
-  html += `<div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-size:13px;color:var(--text);">Traitement</span>${getBoolTag(b.traitement)}
-    </div>`;
-  if (b.traitement_details) {
-    html += `<div style="padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:12px;color:var(--muted);">Détails : </span><span style="font-size:13px;color:var(--text);">${b.traitement_details}</span></div>`;
-  }
-  html += `<div style="padding:8px 0;display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-size:13px;color:var(--text);">Anticoagulants</span>${getBoolTag(b.anticoagulants)}
-    </div>`;
-  if (b.remarques) {
-    html += `<div style="padding:10px;background:var(--bg);border-radius:8px;margin-top:10px;font-size:13px;color:var(--text);">💬 ${b.remarques}</div>`;
-  }
-  html += `</div>`;
+  }).join('');
 
-  container.innerHTML = html;
+  container.innerHTML = `
+    <div class="section-title">Mon Bilan Bien-Être</div>
+
+    <div class="score-badge" style="width:100%;justify-content:center;margin-bottom:20px;">
+      <div>
+        <div class="score-num" style="color:${scoreColor}">${scoreVal}</div>
+        <div class="score-label">/ ${scoreMax} pts</div>
+      </div>
+      <div style="margin-left:12px;">
+        <div class="score-text">${scoreCommentaire}</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;">Score global</div>
+      </div>
+    </div>
+
+    <div class="bilan-card">
+      <div class="bilan-title">📋 Informations personnelles</div>
+      <div class="bilan-grid">
+        <div class="bilan-item"><div class="bilan-label">Prénom</div><div class="bilan-value">${u.prenom || '—'}</div></div>
+        <div class="bilan-item"><div class="bilan-label">Nom</div><div class="bilan-value">${u.nom || '—'}</div></div>
+        <div class="bilan-item"><div class="bilan-label">Âge</div><div class="bilan-value">${u.age || '—'} ans</div></div>
+        <div class="bilan-item"><div class="bilan-label">Poids</div><div class="bilan-value">${u.poids || '—'} kg</div></div>
+        <div class="bilan-item"><div class="bilan-label">Taille</div><div class="bilan-value">${u.taille || '—'} cm</div></div>
+        <div class="bilan-item"><div class="bilan-label">Sportif</div><div class="bilan-value">${u.sportif || '—'}</div></div>
+      </div>
+    </div>
+
+    <div class="bilan-card">
+      <div class="bilan-title">📊 Indicateurs de bien-être</div>
+      ${jaugesHtml}
+    </div>
+
+    ${(u.allergies && u.allergies !== 'Non') ? `
+    <div class="bilan-card">
+      <div class="bilan-title">⚠️ Informations médicales</div>
+      <div class="bilan-grid">
+        ${u.allergies ? `<div class="bilan-item" style="grid-column:1/-1"><div class="bilan-label">Allergies</div><div class="bilan-value">${u.allergies_details || u.allergies}</div></div>` : ''}
+        ${u.pathologie && u.pathologie !== 'Non' ? `<div class="bilan-item" style="grid-column:1/-1"><div class="bilan-label">Pathologie</div><div class="bilan-value">${u.pathologie_details || u.pathologie}</div></div>` : ''}
+        ${u.traitement && u.traitement !== 'Non' ? `<div class="bilan-item" style="grid-column:1/-1"><div class="bilan-label">Traitement</div><div class="bilan-value">${u.traitement_details || u.traitement}</div></div>` : ''}
+        ${u.anticoagulants && u.anticoagulants !== 'Non' ? `<div class="bilan-item" style="grid-column:1/-1"><div class="bilan-label">Anticoagulants</div><div class="bilan-value">${u.anticoagulants}</div></div>` : ''}
+      </div>
+    </div>` : ''}
+
+    ${u.remarques ? `
+    <div class="bilan-card">
+      <div class="bilan-title">💬 Remarques</div>
+      <div style="font-size:13px;color:var(--text);line-height:1.6;">${u.remarques}</div>
+    </div>` : ''}
+  `;
 }
 
 // ============================================================
 // DASHBOARD
 // ============================================================
-function loadConfig() {
-  try {
-    const stored = localStorage.getItem('ebe_produits_config');
-    if (stored) {
-      config = JSON.parse(stored);
-      config.produits.forEach(p => {
-        const card = document.querySelector('.product-card[data-product="' + p + '"]');
-        if (card) card.classList.add('selected');
-      });
-      if (config.horaires.lever) document.getElementById('heureLever').value = config.horaires.lever;
-      if (config.horaires.diner) document.getElementById('heureDiner').value = config.horaires.diner;
-      if (config.horaires.coucher) document.getElementById('heureCoucher').value = config.horaires.coucher;
-      updateDatesFields();
-    }
-    if (userData) {
-      document.getElementById('userName').textContent = (userData.prenom || '') + ' ' + (userData.nom || '');
-      document.getElementById('userEmail').textContent = userData.email || '';
-    }
-  } catch(e) { console.error(e); }
-}
-
-function calcJoursRestants(prod, dateDebut, dose) {
-  if (!dateDebut) return null;
-  const p = PRODUITS[prod];
-  let doseJour = p.dose_jour;
-  if (prod === 'curcu') doseJour = dose || 15;
-  if (prod === 'phyco_intense') doseJour = dose || 20;
-  const dureeTotale = Math.floor(p.vol / doseJour);
-  const debut = new Date(dateDebut);
-  const aujourdhui = new Date();
-  const joursEcoules = Math.floor((aujourdhui - debut) / (1000 * 60 * 60 * 24));
-  const joursRestants = dureeTotale - joursEcoules;
-  return joursRestants > 0 ? joursRestants : 0;
-}
-
 function buildDashboard() {
-  if (userData) {
-    document.getElementById('userName').textContent = (userData.prenom || '') + ' ' + (userData.nom || '');
-    document.getElementById('userEmail').textContent = userData.email || '';
-  }
   const container = document.getElementById('produitsActifs');
   container.innerHTML = '';
   if (config.produits.length === 0) {
-    container.innerHTML = '<p style="text-align:center;color:var(--muted);padding:32px 0;">Aucun produit configuré<br><br><button class="btn btn-primary" style="width:auto;padding:10px 24px;" onclick="showTab(\'config\')">Configurer mes produits</button></p>';
+    container.innerHTML = '<p style="text-align:center;color:var(--muted);padding:32px 0;">Aucun produit configuré<br><br><button class="btn btn-primary" onclick="showTab(\'config\')" style="width:auto;padding:10px 24px;">Configurer mes produits</button></p>';
     return;
   }
   config.produits.forEach(p => {
@@ -704,41 +543,51 @@ function buildDashboard() {
     else if (jours <= 14) { daysClass = 'warn'; }
     let doseText = p === 'curcu' ? (config.doses[p] || 15) + ' ml/jour' : p === 'phyco_intense' ? (config.doses[p] || 20) + ' ml/jour' : prod.dose_jour + ' ' + prod.unite + '/jour';
     let commanderBtn = jours <= 7 ? '<a href="https://boutique.wakeup-time.com?CodeCourtier=CWJS728" target="_blank" class="btn-commander">🛒 Commander maintenant</a>' : '';
-    container.innerHTML += '<div class="dash-card"><div class="dash-card-header"><div style="display:flex;align-items:center;gap:12px;"><img src="' + prod.image + '" class="product-img-dash"><div><div class="dash-product-name">' + prod.nom + '</div><div class="dash-dose">' + doseText + '</div></div></div><div class="dash-days ' + daysClass + '">' + daysText + '</div></div><div class="dash-info"><div style="margin-top:8px">' + prod.horaire + '</div>' + commanderBtn + '</div></div>';
+    container.innerHTML += `<div class="dash-card"><div class="dash-card-header"><div style="display:flex;align-items:center;gap:12px;"><img src="${prod.image}" class="product-img-dash"><div><div class="dash-product-name">${prod.nom}</div><div class="dash-dose">${doseText}</div></div></div><div class="dash-days ${daysClass}">${daysText}</div></div><div class="dash-info"><div style="margin-top:8px">${prod.horaire}</div>${commanderBtn}</div></div>`;
   });
-  buildProchainRappels();
+  buildRappels();
 }
 
-function buildProchainRappels() {
+function buildRappels() {
   const container = document.getElementById('prochainsRappels');
   container.innerHTML = '';
   const rappels = [];
   if (config.produits.includes('phyco') || config.produits.includes('vitc')) {
-    const heure = config.horaires.lever || '07:00';
-    const [h, m] = heure.split(':');
-    const time = new Date();
-    time.setHours(parseInt(h), parseInt(m) + 15, 0);
-    rappels.push({ time: time.toTimeString().slice(0,5), text: 'Phycocyanine + Vitamine C (matin à jeun)' });
+    const [h, m] = (config.horaires.lever || '07:00').split(':');
+    const t = new Date(); t.setHours(parseInt(h), parseInt(m) + 15, 0);
+    rappels.push({ time: t.toTimeString().slice(0,5), text: 'Phycocyanine + Vitamine C (matin à jeun)' });
   }
-  if (config.produits.includes('phyco_intense')) {
-    rappels.push({ time: config.horaires.lever || '07:00', text: 'Phycocyanine Intense 10 ml (matin à jeun)' });
-    rappels.push({ time: config.horaires.coucher || '22:30', text: 'Phycocyanine Intense 5 ml (au coucher)' });
-  }
-  if (config.produits.includes('omega')) {
-    rappels.push({ time: config.horaires.diner || '19:30', text: 'Oméga3-VitD3 (2 capsules pendant le dîner)' });
-  }
+  if (config.produits.includes('omega')) rappels.push({ time: config.horaires.diner || '19:30', text: 'Oméga3-VitD3 (2 capsules pendant le dîner)' });
   if (config.produits.includes('curcu')) {
     const [h, m] = (config.horaires.diner || '19:30').split(':');
-    const time = new Date();
-    time.setHours(parseInt(h), parseInt(m) + 30, 0);
-    rappels.push({ time: time.toTimeString().slice(0,5), text: 'Curcu8-Q10 (' + (config.doses.curcu || 15) + ' ml après repas)' });
+    const t = new Date(); t.setHours(parseInt(h), parseInt(m) + 30, 0);
+    rappels.push({ time: t.toTimeString().slice(0,5), text: 'Curcu8-Q10 (' + (config.doses.curcu || 15) + ' ml après repas)' });
   }
   rappels.sort((a,b) => a.time.localeCompare(b.time));
-  rappels.forEach(r => {
-    container.innerHTML += '<div class="notif-card"><div class="notif-time">' + r.time + '</div><div class="notif-text">' + r.text + '</div></div>';
+  rappels.forEach(r => { container.innerHTML += `<div class="notif-card"><div class="notif-time">${r.time}</div><div class="notif-text">${r.text}</div></div>`; });
+}
+
+function buildModeEmploi() {
+  const container = document.getElementById('modeEmploi');
+  container.innerHTML = '';
+  if (config.produits.length === 0) { container.innerHTML = "<p style='text-align:center;color:var(--muted);padding:32px 0;'>Configurez vos produits d'abord</p>"; return; }
+  config.produits.forEach(p => {
+    const prod = PRODUITS[p];
+    let html = `<div class="mode-card"><div class="mode-header"><img src="${prod.image}" style="width:50px;height:50px;object-fit:contain;"><div><div class="mode-title">${prod.nom}</div><div class="mode-vol">${prod.vol} ${prod.unite}</div></div></div>
+    <div class="mode-section"><div class="mode-label">Horaire</div><div class="mode-text">${prod.horaire}</div></div>
+    <div class="mode-section"><div class="mode-label">Dosage</div><div class="mode-text">${prod.dosage}</div></div>
+    <div class="mode-section"><div class="mode-label">Mode de prise</div><div class="mode-text">${prod.prise}</div></div>
+    <div class="mode-section"><div class="mode-label">Conservation</div><div class="mode-text">${prod.conservation}</div></div>`;
+    if (prod.warning) html += `<div class="mode-warning">⚠️ ${prod.warning}</div>`;
+    if (prod.tips) html += `<div class="mode-section" style="background:var(--bg);padding:10px;border-radius:8px;margin-top:10px;"><div class="mode-label">💡 Astuce</div><div class="mode-text">${prod.tips}</div></div>`;
+    html += '</div>';
+    container.innerHTML += html;
   });
 }
 
+// ============================================================
+// CONFIG
+// ============================================================
 function toggleProduct(el) {
   const prod = el.dataset.product;
   el.classList.toggle('selected');
@@ -753,15 +602,9 @@ function updateDatesFields() {
   config.produits.forEach(p => {
     const prod = PRODUITS[p];
     const val = config.dates[p] || new Date().toISOString().split('T')[0];
-    let html = '<div class="field"><label>' + prod.nom + ' — Date de début</label><input type="date" id="date-' + p + '" value="' + val + '"></div>';
-    if (p === 'curcu') {
-      const doseVal = config.doses[p] || 15;
-      html += '<div class="field"><label>Dosage Curcu8-Q10</label><select id="dose-' + p + '"><option value="15"' + (doseVal === 15 ? ' selected' : '') + '>15 ml (prévention)</option><option value="30"' + (doseVal === 30 ? ' selected' : '') + '>30 ml (douleurs)</option></select></div>';
-    }
-    if (p === 'phyco_intense') {
-      const doseVal = config.doses[p] || 20;
-      html += '<div class="field"><label>Dosage Phycocyanine Intense (ml/jour)</label><input type="number" id="dose-' + p + '" value="' + doseVal + '" min="10" max="30" step="1"><div class="field-hint">💡 Sportif modéré : 15-20 ml | Sportif intense : 20-25 ml</div></div>';
-    }
+    let html = `<div class="field"><label>${prod.nom} — Date de début</label><input type="date" id="date-${p}" value="${val}"></div>`;
+    if (p === 'curcu') { const d = config.doses[p] || 15; html += `<div class="field"><label>Dosage Curcu8-Q10</label><select id="dose-${p}"><option value="15"${d===15?' selected':''}>15 ml (prévention)</option><option value="30"${d===30?' selected':''}>30 ml (douleurs)</option></select></div>`; }
+    if (p === 'phyco_intense') { const d = config.doses[p] || 20; html += `<div class="field"><label>Dosage Phyco Intense (ml/jour)</label><input type="number" id="dose-${p}" value="${d}" min="10" max="30"><div style="font-size:11px;color:var(--muted);margin-top:4px;">💡 Modéré : 15-20 ml | Intense : 20-25 ml</div></div>`; }
     container.innerHTML += html;
   });
 }
@@ -771,33 +614,120 @@ function saveConfig() {
   config.produits.forEach(p => {
     const input = document.getElementById('date-' + p);
     if (input) config.dates[p] = input.value;
-    if (p === 'curcu' || p === 'phyco_intense') {
-      const dose = document.getElementById('dose-' + p);
-      if (dose) config.doses[p] = parseInt(dose.value);
-    }
+    if (p === 'curcu' || p === 'phyco_intense') { const d = document.getElementById('dose-' + p); if (d) config.doses[p] = parseInt(d.value); }
   });
   localStorage.setItem('ebe_produits_config', JSON.stringify(config));
   showTab('dashboard');
 }
 
-function buildModeEmploi() {
-  const container = document.getElementById('modeEmploi');
-  container.innerHTML = '';
-  if (config.produits.length === 0) {
-    container.innerHTML = "<p style='text-align:center;color:var(--muted);padding:32px 0;'>Configurez vos produits pour voir le mode d'emploi</p>";
-    return;
-  }
-  config.produits.forEach(p => {
-    const prod = PRODUITS[p];
-    let html = '<div class="mode-card"><div class="mode-header"><img src="' + prod.image + '" style="width:50px;height:50px;object-fit:contain;"><div><div class="mode-title">' + prod.nom + '</div><div class="mode-vol">' + prod.vol + ' ' + prod.unite + '</div></div></div>';
-    html += '<div class="mode-section"><div class="mode-label">Horaire recommandé</div><div class="mode-text">' + prod.horaire + '</div></div>';
-    html += '<div class="mode-section"><div class="mode-label">Dosage</div><div class="mode-text">' + prod.dosage + '</div></div>';
-    html += '<div class="mode-section"><div class="mode-label">Mode de prise</div><div class="mode-text">' + prod.prise + '</div></div>';
-    html += '<div class="mode-section"><div class="mode-label">Conservation</div><div class="mode-text">' + prod.conservation + '</div></div>';
-    if (prod.warning) html += '<div class="mode-warning">⚠️ ' + prod.warning + '</div>';
-    if (prod.tips) html += '<div class="mode-section" style="background:var(--bg);padding:10px;border-radius:8px;margin-top:10px;"><div class="mode-label">💡 Astuce</div><div class="mode-text">' + prod.tips + '</div></div>';
-    html += '</div>';
-    container.innerHTML += html;
+function loadConfig() {
+  try {
+    const stored = localStorage.getItem('ebe_produits_config');
+    if (stored) {
+      config = JSON.parse(stored);
+      config.produits.forEach(p => { const card = document.querySelector('.product-card[data-product="' + p + '"]'); if (card) card.classList.add('selected'); });
+      if (config.horaires.lever) document.getElementById('heureLever').value = config.horaires.lever;
+      if (config.horaires.diner) document.getElementById('heureDiner').value = config.horaires.diner;
+      if (config.horaires.coucher) document.getElementById('heureCoucher').value = config.horaires.coucher;
+      updateDatesFields();
+    }
+  } catch(e) {}
+}
+
+function calcJoursRestants(prod, dateDebut, dose) {
+  if (!dateDebut) return 999;
+  const p = PRODUITS[prod];
+  let doseJour = p.dose_jour;
+  if (prod === 'curcu') doseJour = dose || 15;
+  if (prod === 'phyco_intense') doseJour = dose || 20;
+  const duree = Math.floor(p.vol / doseJour);
+  const joursEcoules = Math.floor((new Date() - new Date(dateDebut)) / 86400000);
+  return Math.max(0, duree - joursEcoules);
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+}
+
+function showTab(tab) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('screen-' + tab).classList.add('active');
+  document.getElementById('nav-' + tab).classList.add('active');
+  if (tab === 'dashboard') buildDashboard();
+  else if (tab === 'bilan') buildBilan();
+  else if (tab === 'mode') buildModeEmploi();
+}
+
+function backToEmail() { showScreen('email'); }
+
+function logout() {
+  localStorage.removeItem('ebe_session');
+  userData = {};
+  config = { produits: [], horaires: {}, dates: {}, doses: {} };
+  document.getElementById('logoutBtn').style.display = 'none';
+  document.getElementById('footerNav').style.display = 'none';
+  document.getElementById('loginEmail').value = '';
+  showScreen('email');
+}
+
+// ============================================================
+// MOT DE PASSE
+// ============================================================
+function togglePassword(id) {
+  const input = document.getElementById(id);
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+function checkPasswordRules(pwd) {
+  const r1 = document.getElementById('rule-length');
+  const r2 = document.getElementById('rule-upper');
+  const r3 = document.getElementById('rule-number');
+  r1.className = 'rule' + (pwd.length >= 8 ? ' valid' : '');
+  r1.innerHTML = (pwd.length >= 8 ? '✅' : '○') + ' 8 caractères minimum';
+  r2.className = 'rule' + (/[A-Z]/.test(pwd) ? ' valid' : '');
+  r2.innerHTML = (/[A-Z]/.test(pwd) ? '✅' : '○') + ' 1 majuscule';
+  r3.className = 'rule' + (/[0-9]/.test(pwd) ? ' valid' : '');
+  r3.innerHTML = (/[0-9]/.test(pwd) ? '✅' : '○') + ' 1 chiffre';
+}
+
+// ============================================================
+// API CALL
+// ============================================================
+function apiCall(payload) {
+  return new Promise(function(resolve, reject) {
+    const callbackName = 'cb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+    const params = new URLSearchParams();
+    params.append('callback', callbackName);
+    for (const key in payload) {
+      if (payload[key] !== undefined && payload[key] !== null) {
+        params.append(key, payload[key]);
+      }
+    }
+    const script = document.createElement('script');
+    script.src = API_URL + '?' + params.toString();
+    const timeout = setTimeout(function() {
+      cleanup();
+      reject(new Error('Timeout'));
+    }, 15000);
+    window[callbackName] = function(data) {
+      cleanup();
+      resolve(data);
+    };
+    function cleanup() {
+      clearTimeout(timeout);
+      delete window[callbackName];
+      if (script.parentNode) script.parentNode.removeChild(script);
+    }
+    script.onerror = function() {
+      cleanup();
+      reject(new Error('Erreur réseau'));
+    };
+    document.head.appendChild(script);
   });
 }
 </script>

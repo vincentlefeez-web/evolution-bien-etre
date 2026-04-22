@@ -692,40 +692,32 @@ function checkPasswordRules(pwd) {
 // ============================================================
 function apiCall(payload) {
   return new Promise(function(resolve, reject) {
-    const callbackName = 'jsonp_' + Date.now();
-    const params = new URLSearchParams({ callback: callbackName });
+    const params = new URLSearchParams();
     Object.keys(payload).forEach(function(k) {
       if (payload[k] !== undefined && payload[k] !== null && payload[k] !== '') {
         params.append(k, String(payload[k]));
       }
     });
 
-    window[callbackName] = function(data) {
-      clearTimeout(timer);
-      delete window[callbackName];
-      var el = document.getElementById(callbackName);
-      if (el) el.remove();
-      resolve(data);
-    };
+    const url = API_URL + '?' + params.toString();
 
-    var timer = setTimeout(function() {
-      delete window[callbackName];
-      var el = document.getElementById(callbackName);
-      if (el) el.remove();
-      reject(new Error('Timeout - Vérifiez votre connexion'));
-    }, 20000);
-
-    var script = document.createElement('script');
-    script.id = callbackName;
-    script.type = 'text/javascript';
-    script.src = API_URL + '?' + params.toString();
-    script.onerror = function() {
-      clearTimeout(timer);
-      delete window[callbackName];
-      this.remove();
-      reject(new Error('Erreur réseau'));
-    };
-    document.body.appendChild(script);
+    fetch(url, {
+      method: 'GET',
+      redirect: 'follow'
+    })
+    .then(function(response) {
+      return response.text();
+    })
+    .then(function(text) {
+      try {
+        resolve(JSON.parse(text));
+      } catch(e) {
+        reject(new Error('Réponse invalide'));
+      }
+    })
+    .catch(function(err) {
+      reject(err);
+    });
   });
 }
 </script>

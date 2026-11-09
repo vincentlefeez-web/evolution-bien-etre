@@ -1,137 +1,389 @@
 {
-  "name": "Filtre d'Appel – Envoi de la procédure aux nouveaux testeurs",
-  "flow": [
-    {
-      "id": 1,
-      "module": "google-email:TriggerWatchEmails",
-      "version": 2,
-      "parameters": {
-        "__IMTCONN__": null,
-        "folder": "INBOX",
-        "searchType": "gmail",
-        "gmailFilter": "from:(google.com OR googlegroups.com) subject:(demande OR request OR rejoindre OR join)",
-        "markSeen": true,
-        "maxResults": 1
-      },
-      "mapper": {},
-      "metadata": {
-        "designer": {
-          "x": 0,
-          "y": 0,
-          "name": "Demande d'adhésion au groupe testeurs"
-        }
-      }
-    },
-    {
-      "id": 2,
-      "module": "regexp:Parser",
-      "version": 1,
-      "parameters": {
-        "pattern": "([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,})",
-        "global": true,
-        "sensitive": false,
-        "multiline": false,
-        "singleline": false,
-        "continueWhenNoRes": false,
-        "ignoreInfiniteLoopsWhenGlobal": false
-      },
-      "mapper": {
-        "text": "{{1.text}}"
-      },
-      "metadata": {
-        "designer": {
-          "x": 300,
-          "y": 0,
-          "name": "Extraire l'adresse du demandeur"
-        }
-      }
-    },
-    {
-      "id": 3,
-      "module": "google-drive:getAFile",
-      "version": 4,
-      "parameters": {
-        "__IMTCONN__": null
-      },
-      "filter": {
-        "name": "Uniquement l'adresse du nouveau membre",
-        "conditions": [
-          [
-            {
-              "a": "{{2.`$1`}}",
-              "b": "google.com",
-              "o": "text:notcontain:ci"
-            },
-            {
-              "a": "{{2.`$1`}}",
-              "b": "googlegroups.com",
-              "o": "text:notcontain:ci"
-            },
-            {
-              "a": "{{2.`$1`}}",
-              "b": "vincentlefeez@gmail.com",
-              "o": "text:notequal:ci"
+    "name": "Filtre d'Appel – Envoi de la procédure aux nouveaux testeurs",
+    "flow": [
+        {
+            "id": 10,
+            "module": "google-email:TriggerNewEmail",
+            "version": 2,
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0,
+                    "messages": [
+                        {
+                            "category": "epochreq",
+                            "severity": "error",
+                            "message": "You must first choose from which point do you want to start processing your emails."
+                        },
+                        {
+                            "category": "setup",
+                            "severity": "error",
+                            "message": "Connection: Value must not be empty."
+                        },
+                        {
+                            "category": "setup",
+                            "severity": "error",
+                            "message": "Criteria: Value must not be empty."
+                        }
+                    ],
+                    "name": "Demande d'adhésion au groupe testeurs"
+                },
+                "setupValidation": {
+                    "version": 1,
+                    "configuration": "818c9ea79ffcf67c",
+                    "result": {
+                        "valid": false,
+                        "fields": [
+                            {
+                                "domain": "parameters",
+                                "path": "account",
+                                "label": "Connection",
+                                "errors": [
+                                    {
+                                        "message": "Value must not be empty.",
+                                        "code": "validate-bundle-param-required"
+                                    }
+                                ]
+                            },
+                            {
+                                "domain": "parameters",
+                                "path": "criteria",
+                                "label": "Criteria",
+                                "errors": [
+                                    {
+                                        "message": "Value must not be empty.",
+                                        "code": "validate-bundle-param-required"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
             }
-          ]
-        ]
-      },
-      "mapper": {
-        "select": "map",
-        "file": "1WszqcB8YVK44wxru-hMloNlvaFQTfs4X"
-      },
-      "metadata": {
-        "designer": {
-          "x": 600,
-          "y": 0,
-          "name": "Vidéo d'activation (1 Mo)"
+        },
+        {
+            "id": 2,
+            "module": "regexp:Parser",
+            "version": 1,
+            "parameters": {
+                "pattern": "([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,})",
+                "global": true,
+                "sensitive": false,
+                "multiline": false,
+                "singleline": false,
+                "continueWhenNoRes": false,
+                "ignoreInfiniteLoopsWhenGlobal": false
+            },
+            "mapper": {
+                "text": "{{10.text}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0,
+                    "name": "Extraire l'adresse du demandeur"
+                },
+                "setupValidation": {
+                    "version": 1,
+                    "configuration": "e843e730d9ef123f",
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    }
+                },
+                "restore": {},
+                "parameters": [
+                    {
+                        "name": "pattern",
+                        "type": "text",
+                        "label": "Pattern",
+                        "required": true
+                    },
+                    {
+                        "name": "global",
+                        "type": "boolean",
+                        "label": "Global match",
+                        "required": true
+                    },
+                    {
+                        "name": "sensitive",
+                        "type": "boolean",
+                        "label": "Case sensitive",
+                        "required": true
+                    },
+                    {
+                        "name": "multiline",
+                        "type": "boolean",
+                        "label": "Multiline",
+                        "required": true
+                    },
+                    {
+                        "name": "singleline",
+                        "type": "boolean",
+                        "label": "Singleline",
+                        "required": true
+                    },
+                    {
+                        "name": "continueWhenNoRes",
+                        "type": "boolean",
+                        "label": "Continue the execution of the route even if the module finds no matches",
+                        "required": true
+                    },
+                    {
+                        "name": "ignoreInfiniteLoopsWhenGlobal",
+                        "type": "boolean",
+                        "label": "Ignore errors when there is an infinite search loop",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "text",
+                        "type": "text",
+                        "label": "Text"
+                    }
+                ],
+                "interface": [
+                    {
+                        "type": "text",
+                        "name": "$1",
+                        "label": "$1"
+                    },
+                    {
+                        "type": "uinteger",
+                        "name": "i",
+                        "label": "i"
+                    },
+                    {
+                        "type": "any",
+                        "name": "__IMTMATCH__",
+                        "label": "Fallback Match"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "google-drive:getAFile",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 12873741
+            },
+            "filter": {
+                "name": "Uniquement l'adresse du nouveau membre",
+                "conditions": [
+                    [
+                        {
+                            "a": "{{2.`$1`}}",
+                            "b": "google.com",
+                            "o": "text:notcontain:ci"
+                        },
+                        {
+                            "a": "{{2.`$1`}}",
+                            "b": "googlegroups.com",
+                            "o": "text:notcontain:ci"
+                        },
+                        {
+                            "a": "{{2.`$1`}}",
+                            "b": "vincentlefeez@gmail.com",
+                            "o": "text:notequal:ci"
+                        }
+                    ]
+                ]
+            },
+            "mapper": {
+                "select": "map",
+                "formatDocuments": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "formatSpreadsheets": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "formatPresentations": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "formatDrawings": "image/jpeg",
+                "file": "1WszqcB8YVK44wxru-hMloNlvaFQTfs4X"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0,
+                    "name": "Vidéo d'activation (1 Mo)"
+                },
+                "setupValidation": {
+                    "version": 1,
+                    "configuration": "3ed9980a098fd200",
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    }
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "VINCENT's Google Drive connection (vincentlefeez@gmail.com)",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-drive"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "select": {
+                            "label": "Enter manually"
+                        },
+                        "formatDocuments": {
+                            "label": "MS Word Document"
+                        },
+                        "formatSpreadsheets": {
+                            "label": "MS Excel"
+                        },
+                        "formatPresentations": {
+                            "label": "MS PowerPoint"
+                        },
+                        "formatDrawings": {
+                            "label": "JPEG"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-restricted,google-drive",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Enter a File ID",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "map",
+                                "value"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "formatDocuments",
+                        "type": "select",
+                        "label": "Convert Google Documents Files to Format",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                "application/pdf",
+                                "application/vnd.oasis.opendocument.text",
+                                "text/html",
+                                "text/plain",
+                                "application/rtf",
+                                "text/markdown"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "formatSpreadsheets",
+                        "type": "select",
+                        "label": "Convert Google Spreadsheets Files to Format",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                "application/x-vnd.oasis.opendocument.spreadsheet",
+                                "application/pdf",
+                                "text/csv"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "formatPresentations",
+                        "type": "select",
+                        "label": "Convert Google Slides Files to Format",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                "application/pdf"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "formatDrawings",
+                        "type": "select",
+                        "label": "Convert Google Drawings Files to Format",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "image/jpeg",
+                                "image/png",
+                                "image/svg+xml",
+                                "application/pdf"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "file",
+                        "type": "text",
+                        "label": "File ID",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 4,
+            "module": "google-email:ActionSendEmail",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": null
+            },
+            "mapper": {
+                "to": [
+                    "{{2.`$1`}}"
+                ],
+                "subject": "Filtre d'Appel – Votre procédure d'installation 📵",
+                "html": "<p>Bonjour,</p><p>Merci de rejoindre le groupe des testeurs de <b>Filtre d'Appel</b> ! Voici la procédure pour installer l'application.</p><p><b>⚠️ Important :</b> utilisez sur votre téléphone le <b>même compte Google</b> que celui avec lequel vous avez rejoint le groupe. Les liens ci-dessous fonctionnent dès que votre demande d'adhésion est validée.</p><p><b>1. Devenez testeur</b><br>Ouvrez ce lien et appuyez sur « Devenir testeur » :<br><a href=\"https://play.google.com/apps/testing/fr.vincent.filtreappels\">https://play.google.com/apps/testing/fr.vincent.filtreappels</a></p><p><b>2. Installez l'application</b><br>Depuis votre téléphone Android, ouvrez :<br><a href=\"https://play.google.com/store/apps/details?id=fr.vincent.filtreappels\">https://play.google.com/store/apps/details?id=fr.vincent.filtreappels</a><br>puis appuyez sur « Installer ». Si l'application n'apparaît pas encore, patientez quelques minutes et réessayez.</p><p><b>3. Activez le filtrage</b><br>Ouvrez Filtre d'Appel et autorisez-la comme application de filtrage des appels quand Android vous le demande. La vidéo jointe à ce mail vous montre l'activation pas à pas.</p><p><b>4. Réglez vos règles</b><br>Choisissez ce que vous voulez bloquer : préfixes de démarchage, numéros masqués, numéros usurpés, mode strict, liste noire et liste blanche.</p><p>Un souci ou une suggestion ? Répondez simplement à ce mail, vos retours de testeur sont précieux.</p><p>Merci pour votre aide !<br>Vincent</p>",
+                "attachments": [
+                    {
+                        "fileName": "{{3.name}}",
+                        "data": "{{3.data}}"
+                    }
+                ],
+                "cc": [],
+                "bcc": []
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0,
+                    "name": "Mail procédure + vidéo d'activation",
+                    "messages": [
+                        {
+                            "category": "setupreq",
+                            "severity": "error",
+                            "message": "This module doesn't have a connection. Create a connection in the module settings to continue."
+                        }
+                    ]
+                }
+            }
         }
-      }
-    },
-    {
-      "id": 4,
-      "module": "google-email:ActionSendEmail",
-      "version": 2,
-      "parameters": {
-        "__IMTCONN__": null
-      },
-      "mapper": {
-        "to": [
-          "{{2.`$1`}}"
-        ],
-        "subject": "Filtre d'Appel – Votre procédure d'installation 📵",
-        "html": "<p>Bonjour,</p><p>Merci de rejoindre le groupe des testeurs de <b>Filtre d'Appel</b> ! Voici la procédure pour installer l'application.</p><p><b>⚠️ Important :</b> utilisez sur votre téléphone le <b>même compte Google</b> que celui avec lequel vous avez rejoint le groupe. Les liens ci-dessous fonctionnent dès que votre demande d'adhésion est validée.</p><p><b>1. Devenez testeur</b><br>Ouvrez ce lien et appuyez sur « Devenir testeur » :<br><a href=\"https://play.google.com/apps/testing/fr.vincent.filtreappels\">https://play.google.com/apps/testing/fr.vincent.filtreappels</a></p><p><b>2. Installez l'application</b><br>Depuis votre téléphone Android, ouvrez :<br><a href=\"https://play.google.com/store/apps/details?id=fr.vincent.filtreappels\">https://play.google.com/store/apps/details?id=fr.vincent.filtreappels</a><br>puis appuyez sur « Installer ». Si l'application n'apparaît pas encore, patientez quelques minutes et réessayez.</p><p><b>3. Activez le filtrage</b><br>Ouvrez Filtre d'Appel et autorisez-la comme application de filtrage des appels quand Android vous le demande. La vidéo jointe à ce mail vous montre l'activation pas à pas.</p><p><b>4. Réglez vos règles</b><br>Choisissez ce que vous voulez bloquer : préfixes de démarchage, numéros masqués, numéros usurpés, mode strict, liste noire et liste blanche.</p><p>Un souci ou une suggestion ? Répondez simplement à ce mail, vos retours de testeur sont précieux.</p><p>Merci pour votre aide !<br>Vincent</p>",
-        "attachments": [
-          {
-            "fileName": "{{3.name}}",
-            "data": "{{3.data}}"
-          }
-        ],
-        "cc": [],
-        "bcc": []
-      },
-      "metadata": {
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false
+        },
         "designer": {
-          "x": 900,
-          "y": 0,
-          "name": "Mail procédure + vidéo d'activation"
-        }
-      }
+            "orphans": []
+        },
+        "zone": "eu1.make.com",
+        "notes": []
     }
-  ],
-  "metadata": {
-    "version": 1,
-    "scenario": {
-      "roundtrips": 1,
-      "maxErrors": 3,
-      "autoCommit": true,
-      "autoCommitTriggerLast": true,
-      "sequential": false,
-      "confidential": false,
-      "dataloss": false,
-      "dlq": false
-    },
-    "designer": {
-      "orphans": []
-    }
-  }
 }

@@ -8,7 +8,7 @@
  * C'est tout : le script vérifie ensuite le groupe toutes les 15 minutes.
  */
 
-const GROUP_EMAIL = 'VOTRE-GROUPE@googlegroups.com'; // ← à remplacer
+const GROUP_EMAIL = 'testeurs-filtre-dappel@googlegroups.com';
 const VIDEO_FILE_ID = '1WszqcB8YVK44wxru-hMloNlvaFQTfs4X'; // Filtre_Appel_activation_v3_texto_1Mo.mp4
 const SUJET = "Filtre d'Appel – Votre procédure d'installation 📵";
 

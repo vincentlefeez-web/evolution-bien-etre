@@ -44,8 +44,11 @@ function installer() {
 /** Lancée automatiquement : envoie la procédure à chaque nouveau membre. */
 function verifierNouveauxMembres() {
   const props = PropertiesService.getScriptProperties();
-  const connus = JSON.parse(props.getProperty('membres') || '[]');
-  const nouveaux = listerMembres_().filter(e => !connus.includes(e));
+  const actuels = listerMembres_();
+  // On oublie les personnes qui ont quitté le groupe : si elles reviennent, elles recevront à nouveau la procédure.
+  const connus = JSON.parse(props.getProperty('membres') || '[]').filter(e => actuels.includes(e));
+  props.setProperty('membres', JSON.stringify(connus));
+  const nouveaux = actuels.filter(e => !connus.includes(e));
   if (nouveaux.length === 0) return;
 
   const videos = piecesJointes_();

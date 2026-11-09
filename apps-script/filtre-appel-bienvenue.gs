@@ -67,6 +67,21 @@ function testerEnvoi() {
   });
 }
 
+/** Diagnostic : affiche dans le journal les membres vus par le script et ceux déjà mémorisés. */
+function afficherMembres() {
+  Logger.log('Membres vus par le script : ' + JSON.stringify(listerMembres_()));
+  Logger.log('Membres déjà mémorisés : ' + PropertiesService.getScriptProperties().getProperty('membres'));
+}
+
+/** Pour retester : « oublie » une adresse, qui recevra le mail à la prochaine vérification. */
+function oublierAdresse() {
+  const ADRESSE = 'adresse@exemple.fr'; // ← à remplacer
+  const props = PropertiesService.getScriptProperties();
+  const connus = JSON.parse(props.getProperty('membres') || '[]').filter(e => e !== ADRESSE.toLowerCase());
+  props.setProperty('membres', JSON.stringify(connus));
+  Logger.log(ADRESSE + ' oubliée. Lancez verifierNouveauxMembres pour tester tout de suite.');
+}
+
 function listerMembres_() {
   return GroupsApp.getGroupByEmail(GROUP_EMAIL).getUsers().map(u => u.getEmail().toLowerCase());
 }

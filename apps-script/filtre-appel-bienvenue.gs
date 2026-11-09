@@ -81,7 +81,7 @@ function afficherMembres() {
 
 /** Pour retester : « oublie » une adresse, qui recevra le mail à la prochaine vérification. */
 function oublierAdresse() {
-  const ADRESSE = 'lefeez@wanadoo.fr'; // ← adresse à retester
+  const ADRESSE = 'adresse@exemple.fr'; // ← adresse à retester (optionnel)
   const props = PropertiesService.getScriptProperties();
   const connus = JSON.parse(props.getProperty('membres') || '[]').filter(e => e !== ADRESSE.toLowerCase());
   props.setProperty('membres', JSON.stringify(connus));

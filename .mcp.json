@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "antwork": {
+      "type": "http",
+      "url": "https://api.antwork.io/mcp"
+    }
+  }
+}

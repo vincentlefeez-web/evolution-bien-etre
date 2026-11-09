@@ -9,12 +9,15 @@
  */
 
 const GROUP_EMAIL = 'testeurs-filtre-dappel@googlegroups.com';
-const VIDEO_FILE_ID = '1WszqcB8YVK44wxru-hMloNlvaFQTfs4X'; // Filtre_Appel_activation_v3_texto_1Mo.mp4
+const VIDEO_FILE_IDS = [
+  '1S-7pY19LNsX6gugtX5n0bMS_bOQ_smWs', // pub Filtre_Appel.mp4 (7 Mo)
+  '1FCpTMu3PqfalwJX-v7rBIeTRw006GmEu', // Activation_v3_Reels_TikTok_Shorts.mp4 (8 Mo)
+];
 const SUJET = "Filtre d'Appel – Votre procédure d'installation 📵";
 
 const HTML = `
 <p>Bonjour,</p>
-<p>Bienvenue dans le groupe des testeurs de <b>Filtre d'Appel</b> ! Voici la procédure pour installer l'application.</p>
+<p>Bienvenue dans le groupe des testeurs de <b>Filtre d'Appel</b> ! Voici la procédure pour installer l'application. Vous trouverez aussi en pièce jointe la vidéo de présentation de Filtre d'Appel.</p>
 <p><b>⚠️ Important :</b> utilisez sur votre téléphone le <b>même compte Google</b> que celui avec lequel vous avez rejoint le groupe.</p>
 <p><b>1. Devenez testeur</b><br>
 Ouvrez ce lien et appuyez sur « Devenir testeur » :<br>
@@ -24,7 +27,7 @@ Depuis votre téléphone Android, ouvrez :<br>
 <a href="https://play.google.com/store/apps/details?id=fr.vincent.filtreappels">https://play.google.com/store/apps/details?id=fr.vincent.filtreappels</a><br>
 puis appuyez sur « Installer ». Si l'application n'apparaît pas encore, patientez quelques minutes et réessayez.</p>
 <p><b>3. Activez le filtrage</b><br>
-Ouvrez Filtre d'Appel et autorisez-la comme application de filtrage des appels quand Android vous le demande. La vidéo jointe à ce mail vous montre l'activation pas à pas.</p>
+Ouvrez Filtre d'Appel et autorisez-la comme application de filtrage des appels quand Android vous le demande. La vidéo « Activation » jointe à ce mail vous montre l'activation pas à pas.</p>
 <p><b>4. Réglez vos règles</b><br>
 Choisissez ce que vous voulez bloquer : préfixes de démarchage, numéros masqués, numéros usurpés, mode strict, liste noire et liste blanche.</p>
 <p>Un souci ou une suggestion ? Répondez simplement à ce mail, vos retours de testeur sont précieux.</p>
@@ -45,11 +48,11 @@ function verifierNouveauxMembres() {
   const nouveaux = listerMembres_().filter(e => !connus.includes(e));
   if (nouveaux.length === 0) return;
 
-  const video = DriveApp.getFileById(VIDEO_FILE_ID).getBlob();
+  const videos = piecesJointes_();
   nouveaux.forEach(email => {
     GmailApp.sendEmail(email, SUJET, "Ouvrez ce mail en HTML pour voir la procédure.", {
       htmlBody: HTML,
-      attachments: [video],
+      attachments: videos,
       name: "Vincent – Filtre d'Appel",
     });
     connus.push(email);
@@ -62,7 +65,7 @@ function verifierNouveauxMembres() {
 function testerEnvoi() {
   GmailApp.sendEmail(Session.getActiveUser().getEmail(), SUJET, '', {
     htmlBody: HTML,
-    attachments: [DriveApp.getFileById(VIDEO_FILE_ID).getBlob()],
+    attachments: piecesJointes_(),
     name: "Vincent – Filtre d'Appel",
   });
 }
@@ -75,11 +78,15 @@ function afficherMembres() {
 
 /** Pour retester : « oublie » une adresse, qui recevra le mail à la prochaine vérification. */
 function oublierAdresse() {
-  const ADRESSE = 'adresse@exemple.fr'; // ← à remplacer
+  const ADRESSE = 'lefeez@wanadoo.fr'; // ← adresse à retester
   const props = PropertiesService.getScriptProperties();
   const connus = JSON.parse(props.getProperty('membres') || '[]').filter(e => e !== ADRESSE.toLowerCase());
   props.setProperty('membres', JSON.stringify(connus));
   Logger.log(ADRESSE + ' oubliée. Lancez verifierNouveauxMembres pour tester tout de suite.');
+}
+
+function piecesJointes_() {
+  return VIDEO_FILE_IDS.map(id => DriveApp.getFileById(id).getBlob());
 }
 
 function listerMembres_() {

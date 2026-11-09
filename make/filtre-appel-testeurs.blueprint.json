@@ -1,0 +1,137 @@
+{
+  "name": "Filtre d'Appel – Envoi de la procédure aux nouveaux testeurs",
+  "flow": [
+    {
+      "id": 1,
+      "module": "google-email:TriggerWatchEmails",
+      "version": 2,
+      "parameters": {
+        "__IMTCONN__": null,
+        "folder": "INBOX",
+        "searchType": "gmail",
+        "gmailFilter": "from:(google.com OR googlegroups.com) subject:(demande OR request OR rejoindre OR join)",
+        "markSeen": true,
+        "maxResults": 1
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0,
+          "name": "Demande d'adhésion au groupe testeurs"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "regexp:Parser",
+      "version": 1,
+      "parameters": {
+        "pattern": "([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,})",
+        "global": true,
+        "sensitive": false,
+        "multiline": false,
+        "singleline": false,
+        "continueWhenNoRes": false,
+        "ignoreInfiniteLoopsWhenGlobal": false
+      },
+      "mapper": {
+        "text": "{{1.text}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0,
+          "name": "Extraire l'adresse du demandeur"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "google-drive:getAFile",
+      "version": 4,
+      "parameters": {
+        "__IMTCONN__": null
+      },
+      "filter": {
+        "name": "Uniquement l'adresse du nouveau membre",
+        "conditions": [
+          [
+            {
+              "a": "{{2.`$1`}}",
+              "b": "google.com",
+              "o": "text:notcontain:ci"
+            },
+            {
+              "a": "{{2.`$1`}}",
+              "b": "googlegroups.com",
+              "o": "text:notcontain:ci"
+            },
+            {
+              "a": "{{2.`$1`}}",
+              "b": "vincentlefeez@gmail.com",
+              "o": "text:notequal:ci"
+            }
+          ]
+        ]
+      },
+      "mapper": {
+        "select": "map",
+        "file": "1WszqcB8YVK44wxru-hMloNlvaFQTfs4X"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0,
+          "name": "Vidéo d'activation (1 Mo)"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "google-email:ActionSendEmail",
+      "version": 2,
+      "parameters": {
+        "__IMTCONN__": null
+      },
+      "mapper": {
+        "to": [
+          "{{2.`$1`}}"
+        ],
+        "subject": "Filtre d'Appel – Votre procédure d'installation 📵",
+        "html": "<p>Bonjour,</p><p>Merci de rejoindre le groupe des testeurs de <b>Filtre d'Appel</b> ! Voici la procédure pour installer l'application.</p><p><b>⚠️ Important :</b> utilisez sur votre téléphone le <b>même compte Google</b> que celui avec lequel vous avez rejoint le groupe. Les liens ci-dessous fonctionnent dès que votre demande d'adhésion est validée.</p><p><b>1. Devenez testeur</b><br>Ouvrez ce lien et appuyez sur « Devenir testeur » :<br><a href=\"https://play.google.com/apps/testing/fr.vincent.filtreappels\">https://play.google.com/apps/testing/fr.vincent.filtreappels</a></p><p><b>2. Installez l'application</b><br>Depuis votre téléphone Android, ouvrez :<br><a href=\"https://play.google.com/store/apps/details?id=fr.vincent.filtreappels\">https://play.google.com/store/apps/details?id=fr.vincent.filtreappels</a><br>puis appuyez sur « Installer ». Si l'application n'apparaît pas encore, patientez quelques minutes et réessayez.</p><p><b>3. Activez le filtrage</b><br>Ouvrez Filtre d'Appel et autorisez-la comme application de filtrage des appels quand Android vous le demande. La vidéo jointe à ce mail vous montre l'activation pas à pas.</p><p><b>4. Réglez vos règles</b><br>Choisissez ce que vous voulez bloquer : préfixes de démarchage, numéros masqués, numéros usurpés, mode strict, liste noire et liste blanche.</p><p>Un souci ou une suggestion ? Répondez simplement à ce mail, vos retours de testeur sont précieux.</p><p>Merci pour votre aide !<br>Vincent</p>",
+        "attachments": [
+          {
+            "fileName": "{{3.name}}",
+            "data": "{{3.data}}"
+          }
+        ],
+        "cc": [],
+        "bcc": []
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0,
+          "name": "Mail procédure + vidéo d'activation"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false
+    },
+    "designer": {
+      "orphans": []
+    }
+  }
+}
